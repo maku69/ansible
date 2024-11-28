@@ -1,0 +1,6 @@
+---
+- name: Kontrolli, kas kõik masinad on püsti ja vastavad
+  hosts: LinuxiServerid
+  tasks:
+    - name: Ping masinad
+      ansible.builtin.ping:
