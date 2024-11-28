@@ -1,0 +1,39 @@
+---
+- name: Kontrolli, kas paigaldatud tarkvara on olemas
+  hosts: linux_servers
+  tasks:
+    - name: Kontrolli, kas tarkvara on paigaldatud
+      ansible.builtin.yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - fish
+        - tmux
+        - mc
+        - wget
+        - tree
+        - git
+        - docker.io
+        - ansible
+        - sshpass
+        - yamllint
+        - ansible-lint
+      when: ansible_os_family == "RedHat"
+
+    - name: Kontrolli, kas tarkvara on paigaldatud
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - fish
+        - tmux
+        - mc
+        - wget
+        - tree
+        - git
+        - ansible
+        - sshpass
+        - yamllint
+        - ansible-lint
+      when: ansible_os_family == "Debian"
+
